@@ -1,0 +1,70 @@
+.PleaseConsultADoctorPage .ProgressBarImage { 
+    display: none !important;
+}
+
+.PleaseConsultADoctorPage .SkipLink {
+    display: none !important;
+}
+.PleaseConsultADoctorPage .BackArrowLink {
+    position: relative;
+    z-index: 10; /
+}
+
+.ProgressBar {
+    display: flex;
+    align-items: center; /* ✅ Aligner les éléments verticalement */
+    justify-content: space-between; /* ✅ Répartir les éléments horizontalement */
+    width: 100%;
+    padding: 10px;
+    position: relative;
+    margin-top: 40px;
+}
+
+.BackArrowLink {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 16px; /* ✅ Distance par rapport à la bordure gauche */
+}
+
+.BackArrowLink img {
+    width: 24px !important; /* Ajuste la taille de l'icône */
+    height: auto; /* Garde le ratio */
+    cursor: pointer;
+}
+
+.BackArrowLink img:hover {
+    filter: invert(21%) sepia(79%) saturate(2050%) hue-rotate(191deg) brightness(94%) contrast(102%);
+}
+
+.ProgressBarImage {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.ProgressBarImage img {
+    width: 80%;
+    margin-bottom: 6px;
+}
+
+.SkipLink {
+    background: none;
+    display: flex;
+    align-items: center;
+    border: none;
+    text-decoration: none;
+    font-weight: 400;
+    color: #959595;
+    cursor: pointer;
+    font-size: 14px;
+    position: absolute;
+    right: 16px; /* ✅ Distance par rapport à la bordure droite */
+}
+
+.SkipLink:hover {
+    color: rgb(53, 79, 231);
+}
