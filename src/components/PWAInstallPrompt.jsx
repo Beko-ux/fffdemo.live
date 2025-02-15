@@ -1,12 +1,25 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/PWAInstallPrompt.css";
 
 const PWAInstallPrompt = () => {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
   const [isIOS, setIsIOS] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    // Detect if PWA is already installed
+    const isPWAInstalled =
+      window.matchMedia("(display-mode: standalone)").matches ||
+      window.navigator.standalone;
+
+    if (isPWAInstalled) {
+      console.log("PWA is already installed, redirecting...");
+      navigate("/"); // Redirect to home or a main route
+      return;
+    }
+
     // Detect iOS devices
     const userAgent = window.navigator.userAgent.toLowerCase();
     const isIOSDevice = /iphone|ipad|ipod/.test(userAgent);
@@ -14,21 +27,22 @@ const PWAInstallPrompt = () => {
     if (isIOSDevice) {
       setIsIOS(true);
       setShowPopup(true);
-    } else {
-      // Handle normal PWA install event
-      const handleBeforeInstallPrompt = (e) => {
-        e.preventDefault();
-        setDeferredPrompt(e);
-        setShowPopup(true);
-      };
-
-      window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
-
-      return () => {
-        window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
-      };
+      return;
     }
-  }, []);
+
+    // Handle PWA install event
+    const handleBeforeInstallPrompt = (e) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+      setShowPopup(true);
+    };
+
+    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+
+    return () => {
+      window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+    };
+  }, [navigate]);
 
   const handleInstallClick = () => {
     if (deferredPrompt) {
@@ -53,7 +67,7 @@ const PWAInstallPrompt = () => {
         <div className="pwa-content">
           {isIOS ? (
             <>
-              <img src="/assets/popup.png" alt="iOS Install Guide" className="pwa-icon" />
+              <img src="/assets/ios-popup.png" alt="iOS Install Guide" className="pwa-icon" />
               <p>To install this PWA on iOS, open Safari, tap <strong>Share</strong>, then select <strong>"Add to Home Screen"</strong>.</p>
             </>
           ) : (

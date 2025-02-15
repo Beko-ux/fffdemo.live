@@ -1,0 +1,53 @@
+.browser-warning-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+  }
+  
+  .browser-warning-card {
+    background: white;
+    padding: 24px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .browser-warning-card h1 {
+    font-size: 22px;
+    color: #d9534f;
+    margin-bottom: 10px;
+  }
+  
+  .browser-warning-card p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .open-app-button {
+    background: #f16675;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  .close-tab-message {
+    margin-top: 15px;
+    color: #d9534f;
+    font-size: 14px;
+  }
+  
+  
+  .open-app-button:hover {
+    background: #d43d4c;
+  }
+  

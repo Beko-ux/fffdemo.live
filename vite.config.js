@@ -7,6 +7,9 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
+      devOptions: {
+        enabled: true, // Enable for development testing
+      },
       manifest: {
         name: "Fever App",
         short_name: "FeverApp",
@@ -26,7 +29,9 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
+        globPatterns: ["**/*.{js,css,html,png,svg,ico}", "**/*.{json,woff2,ttf}", "**/*.{mp3,mp4}", "**/*.{webp, jpg}", "**/*.wasm"], // Ensure more assets are cached
+        clientsClaim: true, // Force clients to update immediately
+        skipWaiting: true, // Skip waiting for a manual reload
       },
     }),
   ],

@@ -22,5 +22,12 @@
   "scope": "/",
   "display": "standalone",
   "theme_color": "#ffffff",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+
+  "protocol_handlers": [
+    {
+      "protocol": "web+app",
+      "url": "https://fffdemo.live"
+    }
+  ]
 }
